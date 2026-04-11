@@ -1,0 +1,164 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>ZADANIE 3 – Drugi motyw kolorystyczny (CSS)</title>
+    <link id="theme-style" rel="stylesheet" href="red.css"/>
+</head>
+<body>
+    <header>
+    
+        <h1>
+            Andrii Gyrya 
+            Nr.Albumu: PL77551
+            <button id="Zmiana_stylu" onclick="zstylu()">Zmień motyw</button>
+        </h1>
+        
+    </header>
+    <main>
+        <h2>O mnie <button id="om" onclick="oMnie()">Pokaz sekcję</button></h2>
+        <section id="O">
+            <p>
+                Jestem studentem Vistula University, kierunek Informatyka. Interesuję się programowaniem,
+                a także lubię uczyć się nowych technologii i narzędzi. Jestem osobą komunikatywną, pracowitą i zorganizowaną,
+                co pozwala mi efektywnie pracować zarówno samodzielnie, jak i w zespole.
+            </p>
+            <p>
+                Moim celem jest rozwijanie swoich umiejętności programistycznych i zdobywanie doświadczenia w branży IT.
+                Lubię rozwiązywać problemy i tworzyć innowacyjne rozwiązania, które mogą mieć pozytywny wpływ na życie ludzi.
+                Bardzo interesuję się również sztuczną inteligencją i uczeniem maszynowym, dlatego planuję rozwijać swoje umiejętności w tych obszarach.
+                poza tym, jestem otwarty na nowe wyzwania i chętnie podejmuję się różnych projektów, które pozwalają mi rozwijać się zarówno zawodowo, jak i osobiście.
+            </p>
+            
+                <p>Moje zdjęcia profilowe (zdjęcia zrobione przeze mnie):</p>
+                <img src="Resources/photo1.jpg" alt="Zdjęcie profilowe" />
+                <img itemscope src="Resources/photo2.jpg" alt="Zdjęcie profilowe" />
+            
+        </section>
+        <br />
+        
+        <br />
+        <h2>Umiejętności <button id="u" onclick="Um()">Pokaz sekcję</button></h2> 
+        <section id="Umiejętności">
+            
+            <div>
+        
+                <ol>
+                    <li>
+                        <b>Języki (web-)programowania : </b> C#, HTML, CSS, SQL
+                    </li>
+                    <li>
+                        <b>Narzędzia:</b> Visual Studio, SQL Server Management Studio
+                    </li>
+                    <li>
+                        <b>Język(i) obcy(-e):</b> Angielski(B1+)
+                    </li>
+                    <li>
+                        <b>Umiejętności miękkie:</b> komunikatywność, przca w zespole, myślenie analityczne
+                    </li>
+                </ol>
+            </div>
+        </section>
+        <br />
+        <h2>Edukacja <button id="e" onclick="Ed()">Pokaz sekcję</button></h2>
+        <section id="Edukacja">
+            
+            <div>
+                <ol>
+                    <li>
+                        <b>2014-2025:</b> Zaporożski Kolegium "Elint" matematyczny profil. Ukraina, Zaporoże
+                    </li>
+                    <li>
+                        <b>2025-(dziś):</b> Vistula University, kierunek Informatyka, studia licencjackie. Polska, Warszawa
+                    </li>
+                </ol>
+            </div>
+</section>
+        <br/>
+        <h2>Projekty <button id="p" onclick="Proj()">Pokaz sekcję</button></h2>
+        <section id="Projekty">
+            
+            <p>W przeszłymn roku robiłem róźne przojeky z korzystaniem C#, HTML a SQL</p>
+            <button id="O_projektach" onclick="projekty()">Pokaz lista projektów</button>
+            <section id="PokazProjekty">
+                <ol>
+                    <li>
+                        <h3>Niektóre projekty z korzystaniem C#:</h3>
+                            <ul>
+                                <li>
+                                    <i>Analizator funkcji matematycznych</i> <u><a href="https://github.com/77551-andrii-gyrya/Analizator-funkcji-matematycznych">Kod programu</a></u>
+                                    <p><i>O projekcie:</i> Program, który analizuje funkcje matematyczne, oblicza ich wartości i rysuje wykresy.</p>
+                                </li>
+                                <li>
+                                    <i>Symulator Bankomatu i Automatu Vendingowego</i> <u><a href="https://github.com/77551-andrii-gyrya/Symulator-bankomatu-i-automatu-vendingowego">Kod programu</a></u>
+                                    <p><i>O projekcie:</i> Program, który symuluje działanie bankomatu i automatu vendingowego, umożliwiając użytkownikowi wykonywanie różnych operacji finansowych.</p>
+                                </li>
+                            </ul>
+                    </li>
+                    <li>
+                        <h3><b>Jeden z projektów z korzystaniem SQL:</b></h3>
+                            <ul>
+                                <li>
+                                    <i>Projektowanie i implementacja bazy danych dla sklepu internetowego</i>
+                                    <p><i>O projekcie:</i> Projekt, który obejmuje projektowanie i implementację bazy danych dla sklepu internetowego, umożliwiającej przechowywanie informacji o produktach, klientach i zamówieniach.</p>
+                                </li>
+                                </ul>
+                    </li>
+                    <li>
+                        <h3><b>Jeden z projektów z korzystaniem HTML:</b></h3>
+                        <ul>
+                            <li>
+                                <i>CV jako strona internetowa</i>  <u><a href="https://77551-andrii-gyrya.github.io/zad1_cv/">Link do strony</a></u>
+                                <p><i>O projekcie:</i> Projekt, który polega na stworzeniu CV jako strony internetowej, prezentującej moje umiejętności, doświadczenie i informacje kontaktowe.</p>
+                            </li>
+                        </ul></li>
+                </ol>
+            </section>
+        </section>
+        <h2>Doświadczenie <button id="d" onclick="Doś()">Pokaz sekcję</button></h2>
+        <section id="Doświadczenie">
+            
+            <p>     Nie mam doświadczenia zawodowego, ale mam doświadczenie w realizacji różnych projektów programistycznych, 
+            zarówno indywidualnych, jak i zespołowych. Pracowałem nad projektami, o których było omówiono wcześniej. 
+            Te projekty pozwoliły mi zdobyć praktyczne umiejętności programistyczne i doświadczenie w pracy z różnymi technologiami.</p>
+            <p>     Jeszcze nie miałem okazji zdobyć doświadczenia zawodowego,
+            ale jestem otwarty na różne możliwości i chętnie podejmę się praktyk lub stażu, 
+            aby zdobyć cenne doświadczenie w branży IT. Jestem zmotywowany do nauki i rozwoju, 
+            więc jestem gotów podjąć się różnych wyzwań, które pozwolą mi zdobyć praktyczne umiejętności i doświadczenie zawodowe.</p>
+        </section>
+        
+    </main>
+    
+    <footer>
+        <section>
+            <h2>Kontakt</h2>
+            <div> 
+                
+                <p>Mailto: <a href="mailto:agyrya1@stu.vistula.edu.pl">agyrya1@stu.vistula.edu.pl</a></p> 
+                        
+                <p>tel: <a href="tel:+48511491651">+48 511 491 651</a></p>
+                        
+                <p>Miasto: Warszawa</p>
+               
+                <p>
+                    Moje sieci społecznościowe:
+                    <ul id="1">
+                        <li>
+                            Mój Instagram: <a href="https://www.instagram.com/andrii_gyrya/">@andrii_gyrya</a>
+                        </li>
+                        <li> 
+                            Mój YouTube: <a href="https://www.youtube.com/@AndriiGyrya">@AndriiGyrya</a> 
+                        </li> 
+                    </ul> 
+                    
+                </p>
+                
+            </div>
+        </section>
+    </footer>
+<script src="script.js">
+    
+</script>
+</body>
+</html>

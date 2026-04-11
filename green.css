@@ -1,0 +1,154 @@
+﻿
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#PokazProjekty{
+    opacity: 0%;
+}
+.O_projektach{
+    height: 100px;
+}
+button{
+    
+    text-align: center;
+    
+}
+body {
+    background: repeating-linear-gradient(to bottom, darkolivegreen, #2e8b57, #008000, seagreen, yellowgreen);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin-block-end: 0;
+    
+}
+
+header { 
+    position: fixed;
+    top: 0;
+    text-align: center;
+    left: 0;
+    width: 25%;
+    height: 60px;
+    margin-left: 550px;
+    block-size: fit-content;
+    background-color: darkcyan;
+    border: 1px solid black;
+    margin-top: 8px;
+    opacity: 40%;
+    z-index:5; 
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 10%;
+    height: 60px;
+    background-color: darkslategray;
+    font-size: 12px;
+    text-align: center;
+    block-size: fit-content;
+    margin-left: 1195px;
+    margin-bottom: 8px;
+    opacity: 40%;
+    z-index: 5
+}
+    footer:hover {
+        width: 50%;
+        transition: all 0.4s ease;
+        margin-left: 695px;
+        
+    }
+
+main {
+    margin-top: 80px; 
+    margin-bottom: 80px; 
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px; 
+}
+
+section {
+    padding: 20px;
+    max-width: 100%;
+    min-height: 100px;
+    background: rgba(0, 0, 0, 0.6); 
+    color: white;
+    border-radius: 8px;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    word-break: break-word; 
+    overflow-wrap: break-word;
+    transition: all 0.4s ease;
+    opacity: 0.8;
+}
+@media (min-width: 768px) and (max-width: 1024px){ 
+    section {
+    padding: 20px; 
+    }
+}
+@media (min-widht: 1024px){
+    section{
+        padding:40px
+    }
+}
+header:hover, footer:hover{
+    opacity: 100%;
+    transition: all 0.4s ease;
+    z-index: 4;
+}
+#O {
+    background-color: darkolivegreen;
+    margin-top: 8px;
+    opacity: 0;
+    z-index: 1;
+    display: none;
+    height: 0px;
+}
+#Umiejętności {
+    background-color: #2e8b57;
+    opacity: 0;
+    z-index: 1;
+    display: none;
+}
+#Edukacja {
+    background-color: #008000;
+    margin-top: 8px; 
+    opacity: 0;
+    z-index: 1;
+    display: none;
+}
+#Projekty {
+    background-color: seagreen;
+    margin-top: 8px;
+    opacity: 0;
+    z-index: 2;
+    display: none;
+    
+}
+#Zmiana_stylu {
+    width: 100px;
+}
+#Doświadczenie {
+    background-color: yellowgreen;
+    margin-top: 8px;
+    opacity: 0;
+    z-index: 1;
+    display: none;
+}
+
+
+img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 2px dashed black;
+    margin-top: 8px;
+    opacity: 40%;
+}
+img:hover {
+    border: 2px solid black;
+    opacity: 100%;
+    transition: all 0.4s ease;
+    z-index: 3;
+}
