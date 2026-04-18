@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title>Zadanie 4 – Interakcja (JavaScript)</title>
+    <title>Zadanie 5 - Formularz i walidacja</title>
     <link id="theme-style" rel="stylesheet" href="red.css"/>
 </head>
 <body>
@@ -16,6 +16,7 @@
         </h1>
         
     </header>
+    
     <main>
         <h2>O mnie <button id="om" onclick="oMnie()">Pokaz sekcję</button></h2>
         <section id="O">
@@ -129,7 +130,58 @@
         </section>
         
     </main>
-    
+    <section>
+        <div class="form-card">
+    <h1>Wyślij wiadomość</h1>
+    <div class="sub">Wszystkie pola są wymagane</div>
+
+    <form id="contactForm" novalidate>
+        <!-- Pole: imię -->
+        <div class="form-group" id="group-firstname">
+            <label>
+                <span>Imię</span><span class="required-star">*</span>
+            </label>
+            <input type="text" id="firstname" name="firstname" placeholder="np. Anna" autocomplete="given-name">
+            <div class="error-message" id="error-firstname" style="display: none;"></div>
+        </div>
+
+        <!-- Pole: nazwisko -->
+        <div class="form-group" id="group-lastname">
+            <label>
+                <span>Nazwisko</span><span class="required-star">*</span>
+            </label>
+            <input type="text" id="lastname" name="lastname" placeholder="np. Kowalska" autocomplete="family-name">
+            <div class="error-message" id="error-lastname" style="display: none;"></div>
+        </div>
+
+        <!-- Pole: e-mail -->
+        <div class="form-group" id="group-email">
+            <label>
+                <span>Adres e-mail</span><span class="required-star">*</span>
+            </label>
+            <input type="email" id="email" name="email" placeholder="anna.kowalska@example.com" autocomplete="email">
+            <div class="error-message" id="error-email" style="display: none;"></div>
+        </div>
+
+        <!-- Pole: wiadomość (treść) -->
+        <div class="form-group" id="group-message">
+            <label>
+                <span>Wiadomość</span><span class="required-star">*</span>
+            </label>
+            <input type="text" id="message" name="message" placeholder="Treść twojej wiadomości...">
+            <div class="error-message" id="error-message" style="display: none;"></div>
+        </div>
+
+        <button type="submit" id="submitBtn"> Wyślij</button>
+    </form>
+
+    <div id="formFeedback" style="min-height: 80px;"></div>
+    <hr />
+    <div class="info-badge">
+        Walidacja: pola wymagane, poprawny e-mail, brak cyfr w imieniu i nazwisku
+    </div>
+</div>
+    </section>
     <footer>
         <section>
             <h2>Kontakt</h2>
