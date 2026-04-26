@@ -3,7 +3,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title>Zadanie 5 - Formularz i walidacja</title>
+    <title>Zadanie 6 - Dane z JSON</title>
     <link id="theme-style" rel="stylesheet" href="red.css"/>
 </head>
 <body>
@@ -40,27 +40,7 @@
         <br />
         
         <br />
-        <h2>Umiejętności <button id="u" onclick="Um()">Pokaz sekcję</button></h2> 
-        <section id="Umiejętności">
-            
-            <div>
         
-                <ol>
-                    <li>
-                        <b>Języki (web-)programowania : </b> C#, HTML, CSS, SQL
-                    </li>
-                    <li>
-                        <b>Narzędzia:</b> Visual Studio, SQL Server Management Studio
-                    </li>
-                    <li>
-                        <b>Język(i) obcy(-e):</b> Angielski(B1+)
-                    </li>
-                    <li>
-                        <b>Umiejętności miękkie:</b> komunikatywność, przca w zespole, myślenie analityczne
-                    </li>
-                </ol>
-            </div>
-        </section>
         <br />
         <h2>Edukacja <button id="e" onclick="Ed()">Pokaz sekcję</button></h2>
         <section id="Edukacja">
@@ -77,46 +57,9 @@
             </div>
 </section>
         <br/>
-        <h2>Projekty <button id="p" onclick="Proj()">Pokaz sekcję</button></h2>
-        <section id="Projekty">
-            
-            <p>W przeszłymn roku robiłem róźne przojeky z korzystaniem C#, HTML a SQL</p>
-            <button id="O_projektach" onclick="projekty()">Pokaz lista projektów</button>
-            <section id="PokazProjekty">
-                <ol>
-                    <li>
-                        <h3>Niektóre projekty z korzystaniem C#:</h3>
-                            <ul>
-                                <li>
-                                    <i>Analizator funkcji matematycznych</i> <u><a href="https://github.com/77551-andrii-gyrya/Analizator-funkcji-matematycznych">Kod programu</a></u>
-                                    <p><i>O projekcie:</i> Program, który analizuje funkcje matematyczne, oblicza ich wartości i rysuje wykresy.</p>
-                                </li>
-                                <li>
-                                    <i>Symulator Bankomatu i Automatu Vendingowego</i> <u><a href="https://github.com/77551-andrii-gyrya/Symulator-bankomatu-i-automatu-vendingowego">Kod programu</a></u>
-                                    <p><i>O projekcie:</i> Program, który symuluje działanie bankomatu i automatu vendingowego, umożliwiając użytkownikowi wykonywanie różnych operacji finansowych.</p>
-                                </li>
-                            </ul>
-                    </li>
-                    <li>
-                        <h3><b>Jeden z projektów z korzystaniem SQL:</b></h3>
-                            <ul>
-                                <li>
-                                    <i>Projektowanie i implementacja bazy danych dla sklepu internetowego</i>
-                                    <p><i>O projekcie:</i> Projekt, który obejmuje projektowanie i implementację bazy danych dla sklepu internetowego, umożliwiającej przechowywanie informacji o produktach, klientach i zamówieniach.</p>
-                                </li>
-                                </ul>
-                    </li>
-                    <li>
-                        <h3><b>Jeden z projektów z korzystaniem HTML:</b></h3>
-                        <ul>
-                            <li>
-                                <i>CV jako strona internetowa</i>  <u><a href="https://77551-andrii-gyrya.github.io/zad1_cv/">Link do strony</a></u>
-                                <p><i>O projekcie:</i> Projekt, który polega na stworzeniu CV jako strony internetowej, prezentującej moje umiejętności, doświadczenie i informacje kontaktowe.</p>
-                            </li>
-                        </ul></li>
-                </ol>
-            </section>
-        </section>
+        <div id="app">
+            <div class="loading">Ładowanie danych z pliku JSON...</div>
+        </div>
         <h2>Doświadczenie <button id="d" onclick="Doś()">Pokaz sekcję</button></h2>
         <section id="Doświadczenie">
             
