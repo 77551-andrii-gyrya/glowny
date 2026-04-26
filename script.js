@@ -468,7 +468,7 @@ async function loadData() {
     appContainer.innerHTML = '<div style="padding: 2rem; text-align: center;">⏳ Ładowanie danych...</div>';
 
     try {
-        const response = await fetch('data.json');
+        const response = await fetch('./data.json');
         if (!response.ok) {
             throw new Error(`HTTP ${response.status}: Nie można pobrać data.json`);
         }
