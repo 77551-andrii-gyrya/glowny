@@ -88,6 +88,42 @@ function Doś() {
     }
 }
 
+// ============ DANE DOMYŚLNE (gdy plik JSON jest niedostępny) ============
+const DEFAULT_DATA = {
+    "umiejetnosci": {
+        "jezyki": ["C#", "HTML", "CSS", "SQL", "JavaScript"],
+        "narzedzia": ["Visual Studio", "SQL Server Management Studio", "VS Code"],
+        "jezyki_obce": "Angielski (B1+), Ukraiński (ojczysty), Polski (A2)",
+        "miekkie": ["komunikatywność", "praca w zespole", "myślenie analityczne", "samodzielność"]
+    },
+    "projekty": [
+        {
+            "kategoria": "C#",
+            "nazwa": "Analizator funkcji matematycznych",
+            "link": "https://github.com/77551-andrii-gyrya/Analizator-funkcji-matematycznych",
+            "opis": "Program, który analizuje funkcje matematyczne, oblicza ich wartości i rysuje wykresy."
+        },
+        {
+            "kategoria": "C#",
+            "nazwa": "Symulator Bankomatu i Automatu Vendingowego",
+            "link": "https://github.com/77551-andrii-gyrya/Symulator-bankomatu-i-automatu-vendingowego",
+            "opis": "Program symulujący działanie bankomatu i automatu vendingowego."
+        },
+        {
+            "kategoria": "SQL",
+            "nazwa": "Projektowanie i implementacja bazy danych dla sklepu internetowego",
+            "link": null,
+            "opis": "Projekt bazy danych dla sklepu internetowego – produkty, klienci, zamówienia."
+        },
+        {
+            "kategoria": "HTML",
+            "nazwa": "CV jako strona internetowa",
+            "link": "https://77551-andrii-gyrya.github.io/zad1_cv/",
+            "opis": "CV jako strona internetowa z umiejętnościami, doświadczeniem i kontaktem."
+        }
+    ]
+};
+
 // ============ WALIDACJA FORMULARZA ============
 const form = document.getElementById('contactForm');
 const firstNameInput = document.getElementById('firstname');
@@ -285,7 +321,7 @@ form.addEventListener('submit', onSubmitHandler);
 attachLiveValidation();
 clearAllErrorsAndFeedback();
 
-// ============ DYNAMICZNE ŁADOWANIE DANYCH Z JSON ============
+// ============ DYNAMICZNE ŁADOWANIE DANYCH Z JSON (z fallbackiem) ============
 const appContainer = document.getElementById('app');
 
 function generateProjectsList(projekty) {
@@ -416,7 +452,7 @@ function Um() {
     }
 }
 
-// Funkcja dla sekcji Projekty (razem z przyciskiem)
+// Funkcja dla sekcji Projekty
 var isProjShown = false;
 
 function Proj() {
@@ -443,8 +479,8 @@ function Proj() {
     }
 }
 
-// Funkcja dla listy projektów (widoczność listy w środku sekcji)
-var isListOfProjectsShown = true; // domyślnie widoczna
+// Funkcja dla listy projektów
+var isListOfProjectsShown = true;
 
 function projekty() {
     const pokazSection = document.getElementById('PokazProjekty');
@@ -468,25 +504,191 @@ async function loadData() {
     appContainer.innerHTML = '<div style="padding: 2rem; text-align: center;">⏳ Ładowanie danych...</div>';
 
     try {
-        const response = await fetch('./data.json');
+        // Próba załadowania z pliku JSON
+        const response = await fetch('data.json');
         if (!response.ok) {
             throw new Error(`HTTP ${response.status}: Nie można pobrać data.json`);
         }
         const data = await response.json();
-        console.log('Dane załadowane:', data);
+        console.log('✅ Dane załadowane z pliku JSON:', data);
         renderPage(data);
     } catch (error) {
-        console.error('Błąd:', error);
+        console.warn('⚠️ Błąd ładowania data.json, używam danych domyślnych:', error.message);
+        
+        // Użycie danych domyślnych z fallbackiem
         appContainer.innerHTML = `
-            <div style="background: #fee; border: 2px solid #c00; border-radius: 1rem; padding: 1.5rem; margin: 2rem; color: #c00;">
-                <strong>❌ Błąd ładowania danych:</strong><br>
-                ${error.message}<br><br>
-                <strong>Rozwiązania:</strong><br>
-                1. Uruchom przez Live Server (nie file://)<br>
-                2. Sprawdź czy plik data.json istnieje w tym samym folderze
+            <div style="background: #fef3c7; border-left: 5px solid #f59e0b; border-radius: 1rem; padding: 0.8rem 1.2rem; margin-bottom: 1rem; color: #78350f;">
+                ⚠️ <strong>Uwaga:</strong> Nie udało się załadować pliku <code>data.json</code>. 
+                Wyświetlam dane przykładowe. Aby wczytać własne dane:
+                <ul style="margin: 0.5rem 0 0 1.5rem;">
+                    <li>Uruchom stronę przez <strong>Live Server</strong> w VS Code</li>
+                    <li>Lub umieść pliki na serwerze lokalnym (np. XAMPP, Python HTTP server)</li>
+                    <li>Sprawdź czy plik <code>data.json</code> istnieje w tym samym folderze co <code>index.html</code></li>
+                </ul>
             </div>
         `;
+        // Renderowanie z domyślnymi danymi
+        renderPage(DEFAULT_DATA);
+        console.log('📦 Użyto domyślnych danych (fallback)');
     }
 }
 
+// Wywołanie ładowania danych
 loadData();
+
+
+
+// ========================
+        // MODUŁ LOCAL STORAGE (lista zadań)
+        // ========================
+        (function() {
+            // Klucz pod jakim dane są przechowywane w localStorage
+            const STORAGE_KEY = 'user_todo_list';
+            
+            // Referencje do elementów DOM
+            const todoInput = document.getElementById('todoInput');
+            const addBtn = document.getElementById('addTodoBtn');
+            const todoContainer = document.getElementById('todoListContainer');
+            const storageInfo = document.getElementById('storageInfo');
+            
+            // ---------- Funkcje pomocnicze ----------
+            // Pobieranie listy zadań z localStorage
+            function getTasks() {
+                const stored = localStorage.getItem(STORAGE_KEY);
+                if (!stored) {
+                    return []; // brak zadań
+                }
+                try {
+                    return JSON.parse(stored);
+                } catch(e) {
+                    console.error('Błąd parsowania JSON z localStorage', e);
+                    return [];
+                }
+            }
+            
+            // Zapis listy zadań do localStorage
+            function saveTasks(tasks) {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+                // Dodatkowo: wyświetlenie przybliżonego rozmiaru (debug)
+                const size = new Blob([JSON.stringify(tasks)]).size;
+                if (storageInfo) {
+                    storageInfo.innerHTML = `📦 Zapisanoh elementów: ${tasks.length} | ~${size} bajtów`;
+                }
+            }
+            
+            // Renderowanie listy zadań na stronie
+            function renderTodoList() {
+                const tasks = getTasks();
+                if (!todoContainer) return;
+                
+                // Czyścimy kontener (oprócz ewentualnych statycznych wiadomości)
+                todoContainer.innerHTML = '';
+                
+                if (tasks.length === 0) {
+                    todoContainer.innerHTML = '<li class="empty-message">📭 Brak zadań. Dodaj pierwsze zadanie!</li>';
+                    if(storageInfo) storageInfo.innerHTML = `📦 Brak danych | 0 bajtów`;
+                    return;
+                }
+                
+                // Dla każdego zadania tworzymy element li
+                tasks.forEach((task, index) => {
+                    const li = document.createElement('li');
+                    
+                    const spanText = document.createElement('span');
+                    spanText.className = 'todo-text';
+                    spanText.textContent = task.text;   // text zadania
+                    
+                    const delBtn = document.createElement('button');
+                    delBtn.textContent = '🗑 Usuń';
+                    delBtn.className = 'delete-btn';
+                    // Obsługa usuwania – przekazujemy index zadania
+                    delBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        deleteTaskByIndex(index);
+                    });
+                    
+                    li.appendChild(spanText);
+                    li.appendChild(delBtn);
+                    todoContainer.appendChild(li);
+                });
+                
+                // Aktualizacja info o rozmiarze
+                const raw = JSON.stringify(tasks);
+                const size = new Blob([raw]).size;
+                if(storageInfo) storageInfo.innerHTML = `📦 Zadania: ${tasks.length} | Zajętość: ~${size} bajtów`;
+            }
+            
+            // Dodanie nowego zadania
+            function addNewTask() {
+                if (!todoInput) return;
+                const rawText = todoInput.value.trim();
+                if (rawText === "") {
+                    alert("Proszę wpisać treść zadania!");
+                    return;
+                }
+                
+                const currentTasks = getTasks();
+                // nowe zadanie - unikalne ID oparte na czasie (opcjonalnie) ale używamy indeksu, struktura: { id: Date.now(), text: ... }
+                const newTask = {
+                    id: Date.now(),
+                    text: rawText
+                };
+                currentTasks.push(newTask);
+                saveTasks(currentTasks);
+                renderTodoList();
+                // Czyszczenie pola input
+                todoInput.value = "";
+                // Fokus z powrotem
+                todoInput.focus();
+                console.log(`[LocalStorage] Dodano zadanie: "${rawText}"`);
+            }
+            
+            // Usuwanie zadania po indeksie (licząc wg aktualnej tablicy)
+            function deleteTaskByIndex(index) {
+                const tasks = getTasks();
+                if (index >= 0 && index < tasks.length) {
+                    const removed = tasks.splice(index, 1);
+                    saveTasks(tasks);
+                    renderTodoList();
+                    console.log(`[LocalStorage] Usunięto zadanie: "${removed[0]?.text}"`);
+                } else {
+                    console.warn("Nieprawidłowy indeks do usunięcia");
+                }
+            }
+            
+            // Obsługa przycisku dodawania
+            if (addBtn) {
+                addBtn.addEventListener('click', addNewTask);
+            }
+            // Dodanie obsługi klawisza Enter w polu tekstowym
+            if (todoInput) {
+                todoInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        addNewTask();
+                    }
+                });
+            }
+            
+            // Inicjalizacja - odczyt i renderowanie przy starcie (po załadowaniu DOM)
+            function initLocalStorage() {
+                renderTodoList();
+                // Sprawdzenie czy localStorage jest dostępne
+                try {
+                    const testKey = '__test_ls';
+                    localStorage.setItem(testKey, 'ok');
+                    localStorage.removeItem(testKey);
+                    console.log("localStorage jest dostępny");
+                } catch(e) {
+                    console.warn("localStorage niedostępny!", e);
+                    if(storageInfo) storageInfo.innerHTML = "⚠️ localStorage niedostępny w przeglądarce";
+                }
+            }
+            
+            // Wywołanie po pełnym załadowaniu DOM
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initLocalStorage);
+            } else {
+                initLocalStorage();
+            }
+        })();
