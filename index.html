@@ -3,7 +3,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title>Zadanie 6 - Dane z JSON</title>
+    <title>Zadanie 7 - Local Storage</title>
     <link id="theme-style" rel="stylesheet" href="red.css"/>
 </head>
 <body>
@@ -55,7 +55,20 @@
                     </li>
                 </ol>
             </div>
-</section>
+        </section>
+        <div class="todo-container">
+            <h3>📋 Moja lista zadań (Local Storage)</h3>
+            <div class="todo-input-group">
+                <input type="text" id="todoInput" placeholder="Napisz zadanie np. 'Przygotować prezentację'" autocomplete="off">
+                <button class="add-btn" id="addTodoBtn">➕ Dodaj zadanie</button>
+            </div>
+            
+            <ul class="todo-list" id="todoListContainer">
+                <li class="empty-message">✨ Brak zadań. Dodaj pierwsze zadanie!</li>
+            </ul>
+            <div class="storage-stats" id="storageInfo"></div>
+        </div>
+        <hr />
         <br/>
         <div id="app">
             <div class="loading">Ładowanie danych z pliku JSON...</div>
